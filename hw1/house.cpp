@@ -1,12 +1,13 @@
 #include <iostream>
+#include <math.h>
 #include "house.h"
 
 using namespace std;
 
 House::House() {
   baseSize = 3;
-  // borderChar = 'X';
-  // fillChar = '*';
+  borderChar = 'X';
+  fillChar = '*';
 }
 
 House::House(int size, char border, char fill) {
@@ -20,18 +21,18 @@ int House::GetSize() {
 }
 
 void House::Draw() {
-  // for loop for all house char + spaces
-  for (int i = 0; i < baseSize*2 + 1; i++) {
+  int houseCenter = ceil(baseSize/2);
+  int rows = baseSize*2 + 1;
+  int columns = baseSize + 2;
 
-    // top most point
-    for (int j = 0; j < baseSize + 2; j++) {
-      // center of x-axis
-      if (j == baseSize/2) {
-        cout << borderChar;
-      }
-      else {
-        cout << " ";
-      }
+
+  // // for loop for number of rows
+  for (int i = 0; i <= rows; i++) {
+    cout << "this is row: " << i << endl;
+    // for loop to handle columns
+    for (int j = 0; j < i; j++) {
+      cout << borderChar << " ";
     }
+    cout << endl;
   }
 }

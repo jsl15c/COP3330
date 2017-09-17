@@ -13,6 +13,6 @@ public:
   void Summary();
 
 private:
-  int baseSize;
+  double baseSize;
   char borderChar, fillChar;
 };
