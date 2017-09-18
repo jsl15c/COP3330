@@ -30,20 +30,21 @@ void House::Draw() {
 
 // parent loop for trianglular portion of house
   for (int i = 1; i <= triangleRows; i++) {
-    // triangle spaces and left border
-      // while loop instead?
-    for (int j = 1; j <= triangleRows - i; j++) {
-      if (j == triangleRows - i) {
+    // triangle spaces
+      int counter = 1;
+      while (counter <= triangleRows - i) {
+          cout << " ";
+          counter++;
+      }
+
+    // triangle fill and border
+    for (int j = 1; j <= i; j++) {
+      // left border check
+      if (j == 1 || (j == 2 && i == triangleRows)) {
         cout << borderChar << " ";
       }
-      else {
-        cout << " ";
-      }
-    }
-    // triangle fill and right border
-    for (int k = 1; k <= i; k++) {
-      // last border check
-      if (k == i) {
+      // right border check
+      else if (j == i || (j == i-1 && i == triangleRows)) {
         cout << borderChar << " ";
       }
       // remaining are fill characters
@@ -67,11 +68,7 @@ void House::Draw() {
     while (counter <= baseSize) {
       // determines which fill type is used
         // if last row
-      if (i == baseRows) {
-        cout << borderChar << " ";
-      }
-        // if first or last character of base
-      else if (counter == 1 || counter == baseSize) {
+      if (i == baseRows || counter == 1 || counter == baseSize) {
         cout << borderChar << " ";
       }
         // remaining is fill
@@ -82,6 +79,7 @@ void House::Draw() {
     }
     cout << endl;
   }
+
 }
 
 
