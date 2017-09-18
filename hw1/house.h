@@ -1,7 +1,6 @@
 class House
 {
 public:
-  House();
   House(int size = 3, char border = 'X', char fill = '*');
 
   int GetSize(), Perimeter();
