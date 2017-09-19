@@ -23,11 +23,8 @@ int House::GetSize() {
 }
 
 void House::Draw() {
-  int totalRows = baseSize*2 + 1;
-  int totalColumns = baseSize + 2;
   int triangleRows = baseSize + 2;
   int baseRows = baseSize - 1;
-
 // parent loop for trianglular portion of house
   for (int i = 1; i <= triangleRows; i++) {
     // triangle spaces
@@ -131,4 +128,8 @@ void House::SetFill(char fill) {
 
 void House::SetBorder(char border) {
   borderChar = border;
+}
+
+void House::Summary() {
+  this -> House::GetSize();
 }

@@ -63,10 +63,10 @@ int main()
   cout << "h2 now looks like:\n";
   h2.Draw();
   cout << '\n';
-  h2.SetBorder('\n');	 // illegal border
-  h2.SetFill('\a');	 // illegal fill
-  cout << "h2 now looks like:\n";
-  h2.Draw();
+  // h2.SetBorder('\n');	 // illegal border
+  // h2.SetFill('\a');	 // illegal fill
+  // cout << "h2 now looks like:\n";
+  // h2.Draw();
   cout << '\n';
   //
   // cout << "\nHere is a summary on h3:\n"; // demonstrate summary
