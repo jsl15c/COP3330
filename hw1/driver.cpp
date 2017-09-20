@@ -1,7 +1,6 @@
 // Bob Myers
 // driver.cpp -- driver program to demonstrate the behavior of
 // 	  	 the House class
-
 #include <iostream>
 #include "house.h"
 
@@ -12,7 +11,7 @@ int main()
   // create some Houses
   House h1( 3 );
   House h2( 7, '^' );
-  House h3( 12, 'W', 'o' );
+  House h3( 12, 'W', 'o');
   House h4( 50 , '$' , '-');
 
   // display original Houses
@@ -63,14 +62,14 @@ int main()
   cout << "h2 now looks like:\n";
   h2.Draw();
   cout << '\n';
-  // h2.SetBorder('\n');	 // illegal border
-  // h2.SetFill('\a');	 // illegal fill
-  // cout << "h2 now looks like:\n";
-  // h2.Draw();
+  h2.SetBorder('\n');	 // illegal border
+  h2.SetFill('\a');	 // illegal fill
+  cout << "h2 now looks like:\n";
+  h2.Draw();
   cout << '\n';
   //
-  // cout << "\nHere is a summary on h3:\n"; // demonstrate summary
-  // h3.Summary();
+  cout << "\nHere is a summary on h3:\n"; // demonstrate summary
+  h3.Summary();
 
   return 0;
 }

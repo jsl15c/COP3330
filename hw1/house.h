@@ -7,11 +7,12 @@ public:
   double Area();
 
   void Grow(), Shrink();
-  void SetBorder(char border), SetFill(char fill);
+  void SetBorder(char border);
+  void SetFill(char fill);
   void Draw();
   void Summary();
 
 private:
-  double baseSize;
+  int baseSize;
   char borderChar, fillChar;
 };
