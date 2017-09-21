@@ -1,6 +1,7 @@
 class House
 {
 public:
+  // deafault of 3, 'X', and '*'
   House(int size = 3, char border = 'X', char fill = '*');
 
   int GetSize(), Perimeter();
