@@ -1,5 +1,3 @@
-#include <iostream>
-#include <math.h>
 #include "house.h"
 
 using namespace std;
@@ -86,14 +84,14 @@ void House::Draw() {
 
 double House::Area() {
   // variable for triangle portion of house
-  double triangleArea = 0.5 * (baseSize + 2) * (baseSize + 2);
+  double triangleLength = baseSize + 2;
+  double triangleArea = (sqrt(3)/4) * (pow(triangleLength, 2));
 
   // variables for squre portion of house
   double squareArea = baseSize*2;
 
   // area of total house
-  double area = triangleArea + squareArea;
-
+  double area = roundf((triangleArea + squareArea) * 100) / 100;
   return area;
 }
 

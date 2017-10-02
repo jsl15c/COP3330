@@ -12,8 +12,7 @@ house.o: house.cpp house.h
 
 # compile all .cpp files
 compileAll: house.cpp driver.cpp house.h
-			g++ -c house.cpp
-			g++ -c driver.cpp
+			g++ -c *cpp
 
 # remove all object file and exec program
 clean:
@@ -21,7 +20,6 @@ clean:
 
 # compiles, build exec program, and runs it
 allAndRun: house.cpp driver.cpp house.h house.o driver.o
-	g++ -c house.cpp
-	g++ -c driver.cpp
+	g++ -c *cpp
 	g++ -o house house.o driver.o
 	./house
