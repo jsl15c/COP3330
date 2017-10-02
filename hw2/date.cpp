@@ -1,10 +1,11 @@
 #include "date.h"
-
+// fix two digit format
 using namespace std;
 
 Date::Date(int m, int d, int y) {
   // check for invalid date
-  if (m < 1 || d < 1 || y < 1 || d > DaysPerMonth(m, y)) {
+    // create DateIsInvalid() function
+  if (DateIsInvalid(m, d, y)) {
     monthNum = 1;
     day = 1;
     year = 2000;
@@ -27,7 +28,7 @@ void Date::Input() {
   cin.get();
   cin >> year;
   // checks for valid date (min and max number of days, leap year)
-  while (monthNum < 1 || day < 1 || year < 1 || day > DaysPerMonth(monthNum, year)) {
+  while (DateIsInvalid(monthNum, day, year)) {
     cout << "Invalid date entered.  Try again: " << endl;
     cin >> monthNum;
     cin.get();
@@ -80,7 +81,16 @@ void Date::Show() {
 }
 
 bool Date::Set(int m, int d, int y) {
-  return true;
+  if (DateIsInvalid(m, d, y)) {
+    return false;
+  }
+
+  else {
+    monthNum = m;
+    day = d;
+    year = y;
+    return true;
+  }
 }
 
 int Date::GetMonth() {
@@ -156,5 +166,15 @@ int Date::DaysPerMonth(int m, int y) {
     else {
       return 28;
     }
+  }
+}
+
+bool Date::DateIsInvalid(int m, int d, int y) {
+  if (m < 1 || m > 12 ||d < 1 || y < 1 ||
+    d > DaysPerMonth(m, y)) {
+    return true;
+  }
+  else {
+    return false;
   }
 }

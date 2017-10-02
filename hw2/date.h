@@ -29,6 +29,8 @@ public:
 
   int DaysPerMonth(int m, int y);
 
+  bool DateIsInvalid(int m, int d, int y);
+
 private:
   int monthNum, day, year;
   char format;
