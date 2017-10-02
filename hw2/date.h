@@ -27,7 +27,7 @@ public:
 
   int Compare(const Date& d);
 
-  int DaysPerMonth(int m, int d, int y);
+  int DaysPerMonth(int m, int y);
 
 private:
   int monthNum, day, year;
