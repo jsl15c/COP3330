@@ -46,11 +46,11 @@ void Date::Show() {
   switch(format) {
     // default format
     case 'D':
-      cout << monthNum << "/" << day
-      << "/" << year << endl;
-      // spacing
-      cout << endl;
+      cout << monthNum << "/";
+      cout << day << "/";
+      cout << year;
       break;
+
     // two digit format
     case 'T':
       cout.fill('0');
@@ -59,25 +59,45 @@ void Date::Show() {
       cout.fill('0');
       cout.width(2);
       cout << day << "/";
-      cout << year << endl;
-      // spacing
-      cout << endl;
+      // stores new format of year
+        // prevents changing private member value
+      int tempYear;
+      // converts year to last two digits
+      if (year >= 1000) {
+        tempYear = year % 100;
+      }
+      else if (year >= 100) {
+        tempYear = year % 10;
+      }
+      else {
+        tempYear = year;
+      }
+      // print year with leading 0 if less than two digits
+      if (tempYear > 9) {
+        cout << tempYear;
+      }
+      else {
+        cout.fill('0');
+        cout.width(2);
+        cout << tempYear;
+      }
       break;
+
     // long format
     case 'L':
-      cout << monthNames[monthNum - 1] << " "
-           << day << ", " << year << endl;
-      // spacing
-      cout << endl;
+      cout << monthNames[monthNum - 1] << " ";
+      cout << day << ", ";
+      cout << year;
       break;
     // if invalid parameters in SetFormat function
     default:
-      cout << monthNum << "/" << day
-      << "/" << year << endl;
-      // spacing
-      cout << endl;
+      cout << monthNum << "/";
+      cout << day << "/";
+      cout << year;
       break;
   }
+  cout << endl;
+  cout << endl;
 }
 
 bool Date::Set(int m, int d, int y) {
@@ -121,26 +141,20 @@ void Date::Increment(int numDays) {
   // temp value of day
   int tempDay = day;
   int tempMonth = monthNum;
-  // check if increment will change the month
-  // if (day + numDays > DaysPerMonth(GetMonth(), GetDay(), GetYear())) {
-  if (day + numDays > DaysPerMonth(monthNum, year)) {
-    // reset last month to 1 if Increment
-    // is more than max days
-    if (monthNum + 1 > 12) {
-      monthNum = 1;
+  // check if increment will surpass # of days in month
+  while (day + numDays > DaysPerMonth(monthNum, year)) {
+    // decrease increment number by days per each
+    // respective month to land on the correct month
+    numDays -= DaysPerMonth(monthNum, year);
+    // if surpasses 12, increase year, reset month to 1
+    if (monthNum == 12) {
+      // requires reset to zero to increment month by 1
+      monthNum = 0;
+      year++;
     }
-    else {
-      // increment month by 1
-      monthNum += 1;
-    }
-    // set day to remaing days after last day of month
-    day = (tempDay + numDays) - DaysPerMonth(tempMonth, year);
+    monthNum++;
   }
-  // does not pass max days in month
-  else {
-    // increment day by numDays
-    day = day + numDays;
-  }
+  day += numDays;
 }
 
 int Date::Compare(const Date& d) {
@@ -149,7 +163,7 @@ int Date::Compare(const Date& d) {
 
 int Date::DaysPerMonth(int m, int y) {
   // if a month with 31 days
-  if ((m % 2 != 0 && m < 7) ||
+  if ((m % 2 != 0 && m <= 7) ||
       (m % 2 == 0 && m > 7)) {
     return 31;
   }
