@@ -2,6 +2,7 @@
 // fix two digit format
 using namespace std;
 
+// initializes Date object
 Date::Date(int m, int d, int y) {
   // check for invalid date
     // create DateIsInvalid() function
@@ -10,7 +11,6 @@ Date::Date(int m, int d, int y) {
     day = 1;
     year = 2000;
   }
-
   else {
     monthNum = m;
     day = d;
@@ -19,6 +19,7 @@ Date::Date(int m, int d, int y) {
   format = 'D';
 }
 
+// accepts input for date through CLI
 void Date::Input() {
   // initial input
   cout << "Enter a date (mm/dd/yyyy): " << endl;
@@ -38,11 +39,11 @@ void Date::Input() {
   }
 }
 
+// prints date
 void Date::Show() {
   // array of months
   string monthNames[] = {"Jan", "Feb", "Mar", "Apr", "May", "June",
                          "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
-
   switch(format) {
     // default format
     case 'D':
@@ -100,11 +101,11 @@ void Date::Show() {
   cout << endl;
 }
 
+// allows user to set date
 bool Date::Set(int m, int d, int y) {
   if (DateIsInvalid(m, d, y)) {
     return false;
   }
-
   else {
     monthNum = m;
     day = d;
@@ -112,6 +113,7 @@ bool Date::Set(int m, int d, int y) {
     return true;
   }
 }
+
 
 int Date::GetMonth() {
   return monthNum;
@@ -137,6 +139,7 @@ bool Date::SetFormat(char f) {
   }
 }
 
+// increases date by specified # of days
 void Date::Increment(int numDays) {
   // temp value of day
   int tempDay = day;
@@ -157,10 +160,42 @@ void Date::Increment(int numDays) {
   day += numDays;
 }
 
+
 int Date::Compare(const Date& d) {
-  return 0;
+  // if calling object year is first
+  if (this->GetYear() < d.year)  {
+    return -1;
+  }
+  // if parameter object year is first
+  else if (this->GetYear() > d.year) {
+    return 1;
+  }
+  else { // same year
+    // if calling object month is first
+    if (this->GetMonth() < d.monthNum) {
+      return -1;
+    }
+    // if parameter object month is first
+    else if (this->GetMonth() > d.monthNum) {
+      return 1;
+    }
+    else { // same month
+      // if calling object day is first
+      if (this->GetDay() < d.day) {
+        return -1;
+      }
+      // if parameter object day is first
+      else if (this->GetDay() > d.day) {
+        return 1;
+      }
+      else { // dates are exactly the same
+        return 0;
+      }
+    }
+  }
 }
 
+// returns # of days per current month
 int Date::DaysPerMonth(int m, int y) {
   // if a month with 31 days
   if ((m % 2 != 0 && m <= 7) ||
@@ -183,12 +218,13 @@ int Date::DaysPerMonth(int m, int y) {
   }
 }
 
+// error checking for invalid dates
 bool Date::DateIsInvalid(int m, int d, int y) {
   if (m < 1 || m > 12 ||d < 1 || y < 1 ||
     d > DaysPerMonth(m, y)) {
     return true;
   }
-  else {
+  else { // date is valid
     return false;
   }
 }
