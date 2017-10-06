@@ -60,28 +60,7 @@ void Date::Show() {
       cout.fill('0');
       cout.width(2);
       cout << day << "/";
-      // stores new format of year
-        // prevents changing private member value
-      int tempYear;
-      // converts year to last two digits
-      if (year >= 1000) {
-        tempYear = year % 100;
-      }
-      else if (year >= 100) {
-        tempYear = year % 10;
-      }
-      else {
-        tempYear = year;
-      }
-      // print year with leading 0 if less than two digits
-      if (tempYear > 9) {
-        cout << tempYear;
-      }
-      else {
-        cout.fill('0');
-        cout.width(2);
-        cout << tempYear;
-      }
+      TwoDigitYear();
       break;
 
     // long format
@@ -90,6 +69,30 @@ void Date::Show() {
       cout << day << ", ";
       cout << year;
       break;
+
+    // Julian format
+    case 'J':
+      int julianDay;
+      // ignore loop if first month
+      if (monthNum == 1) {
+        julianDay = day;
+      }
+      else {
+        // loop adds # of days in prev months
+        for (int i = 1; i < monthNum; i++) {
+          julianDay += DaysPerMonth(i, year);
+        }
+        // adds current day to julianDay
+        julianDay += day;
+      }
+      TwoDigitYear();
+      // format day with trailing 0s
+      cout << "-";
+      cout.fill('0');
+      cout.width(3);
+      cout << julianDay;
+      break;
+
     // if invalid parameters in SetFormat function
     default:
       cout << monthNum << "/";
@@ -129,7 +132,7 @@ int Date::GetYear() {
 
 // changes display format for each Date object
 bool Date::SetFormat(char f) {
-  if (f == 'D' || f == 'T' || f == 'L') {
+  if (f == 'D' || f == 'T' || f == 'L' || f == 'J') {
     format = f;
     return true;
   }
@@ -226,5 +229,31 @@ bool Date::DateIsInvalid(int m, int d, int y) {
   }
   else { // date is valid
     return false;
+  }
+}
+
+// format year to two digits
+void Date::TwoDigitYear() {
+  // stores new format of year
+    // prevents changing private member value
+  int tempYear;
+  // converts year to last two digits
+  if (year >= 1000) {
+    tempYear = year % 100;
+  }
+  else if (year >= 100) {
+    tempYear = year % 10;
+  }
+  else {
+    tempYear = year;
+  }
+  // print year with leading 0 if less than two digits
+  if (tempYear > 9) {
+    cout << tempYear;
+  }
+  else {
+    cout.fill('0');
+    cout.width(2);
+    cout << tempYear;
   }
 }

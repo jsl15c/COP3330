@@ -31,6 +31,8 @@ public:
 
   bool DateIsInvalid(int m, int d, int y);
 
+  void TwoDigitYear();
+
 private:
   int monthNum, day, year;
   char format;
