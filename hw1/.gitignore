@@ -1,0 +1,6 @@
+.swp
+house
+makefile
+*.o
+*.gch
+*.save
