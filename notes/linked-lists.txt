@@ -1,0 +1,26 @@
+// newPtr is now firstPtr
+newPtr->nextPtr = firstPtr;
+firstPtr = newPtr;
+
+-----
+
+lastPtr->nextPtr = firstPtr;
+firstPtr = lastPtr;
+
+
+listNode* currentPtr = firstPtr;
+
+while(curretnPtr != 0 ) {
+  cout << currentPtr -> data;
+  currentPtr=currentPtr->nextPtr;
+}
+
+while (currentPtr->nextPtr != lastPtr){
+  currentPtr=currentPtr->nextPtr;
+}
+
+currentPtr->nextPtr = 0;
+lastPtr = currentPtr;
+
+
+// Destructors for linked lists
